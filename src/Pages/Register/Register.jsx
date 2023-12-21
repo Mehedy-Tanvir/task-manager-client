@@ -41,8 +41,6 @@ const Register = () => {
               name,
               email,
               image,
-              role: "Tourist",
-              discount: false,
             };
             axiosPublic
               .post("/users", userInfo)

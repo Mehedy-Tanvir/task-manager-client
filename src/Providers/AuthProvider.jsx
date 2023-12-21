@@ -55,7 +55,7 @@ const AuthProvider = ({ children }) => {
         setUser(currentUser);
         setLoading(false);
         axios
-          .post("https://tour-guide-server-alpha.vercel.app/jwt", loggedUser, {
+          .post("http://localhost:3000/jwt", loggedUser, {
             withCredentials: true,
           })
           .then((res) => console.log(res))
@@ -64,13 +64,9 @@ const AuthProvider = ({ children }) => {
         setUser(null);
         setLoading(false);
         axios
-          .post(
-            "https://tour-guide-server-alpha.vercel.app/logout",
-            loggedUser,
-            {
-              withCredentials: true,
-            }
-          )
+          .post("http://localhost:3000/logout", loggedUser, {
+            withCredentials: true,
+          })
           .then((res) => console.log(res))
           .catch((err) => console.log(err));
       }
