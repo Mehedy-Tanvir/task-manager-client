@@ -32,63 +32,6 @@ const Navbar = () => {
           </div>
         </li>
       )}
-      {!loading && user && (
-        <div className="hidden dropdown lg:block">
-          <label
-            tabIndex={0}
-            className="text-[#222] drop-shadow-lg normal-case font-normal text-[16px]"
-          >
-            Dashboard
-          </label>
-          <ul
-            tabIndex={0}
-            className="dropdown-content dropdown-right z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <NavLink
-                className={({ isActive, isPending }) =>
-                  isPending
-                    ? "pending"
-                    : isActive
-                    ? "lg:text-yellow-500 drop-shadow-lg normal-case font-poppins font-normal text-[16px]"
-                    : "text-[#222] drop-shadow-lg normal-case font-normal text-[16px]"
-                }
-                to="/myServices"
-              >
-                My Services
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={({ isActive, isPending }) =>
-                  isPending
-                    ? "pending"
-                    : isActive
-                    ? "lg:text-yellow-500 drop-shadow-lg normal-case font-poppins font-normal text-[16px]"
-                    : "text-[#222] drop-shadow-lg normal-case font-normal text-[16px]"
-                }
-                to="/addServices"
-              >
-                Add Services
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={({ isActive, isPending }) =>
-                  isPending
-                    ? "pending"
-                    : isActive
-                    ? "lg:text-yellow-500 drop-shadow-lg normal-case font-poppins font-normal text-[16px]"
-                    : "text-[#222] drop-shadow-lg normal-case font-normal text-[16px]"
-                }
-                to="/mySchedules"
-              >
-                My Schedules
-              </NavLink>
-            </li>
-          </ul>
-        </div>
-      )}
       <li>
         <NavLink
           className={({ isActive, isPending }) =>
@@ -112,9 +55,9 @@ const Navbar = () => {
               ? "lg:text-yellow-500] drop-shadow-lg normal-case font-poppins font-normal text-[16px]"
               : "text-[#222] drop-shadow-lg normal-case font-normal text-[16px]"
           }
-          to="/services"
+          to="/dashboard"
         >
-          Services
+          Dashboard
         </NavLink>
       </li>
 
@@ -176,53 +119,18 @@ const Navbar = () => {
             {links}
             {!loading && user && (
               <li className="lg:hidden">
-                <details>
-                  <summary>Dashboard</summary>
-                  <ul className="p-2 bg-base-100">
-                    <li>
-                      <NavLink
-                        className={({ isActive, isPending }) =>
-                          isPending
-                            ? "pending"
-                            : isActive
-                            ? "lg:text-[#FA7436] drop-shadow-lg normal-case font-poppins font-normal text-[16px]"
-                            : "text-[#222] drop-shadow-lg normal-case font-normal text-[16px]"
-                        }
-                        to="/myServices"
-                      >
-                        My Services
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        className={({ isActive, isPending }) =>
-                          isPending
-                            ? "pending"
-                            : isActive
-                            ? "lg:text-[#FA7436] drop-shadow-lg normal-case font-poppins font-normal text-[16px]"
-                            : "text-[#222] drop-shadow-lg normal-case font-normal text-[16px]"
-                        }
-                        to="/addServices"
-                      >
-                        Add Services
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink
-                        className={({ isActive, isPending }) =>
-                          isPending
-                            ? "pending"
-                            : isActive
-                            ? "lg:text-[#FA7436] drop-shadow-lg normal-case font-poppins font-normal text-[16px]"
-                            : "text-[#222] drop-shadow-lg normal-case font-normal text-[16px]"
-                        }
-                        to="/mySchedules"
-                      >
-                        My Schedules
-                      </NavLink>
-                    </li>
-                  </ul>
-                </details>
+                <NavLink
+                  className={({ isActive, isPending }) =>
+                    isPending
+                      ? "pending"
+                      : isActive
+                      ? "lg:text-[#FA7436] drop-shadow-lg normal-case font-poppins font-normal text-[16px]"
+                      : "text-[#222] drop-shadow-lg normal-case font-normal text-[16px]"
+                  }
+                  to="/dashboard"
+                >
+                  Dashboard
+                </NavLink>
               </li>
             )}
           </ul>
