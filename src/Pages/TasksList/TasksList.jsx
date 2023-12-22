@@ -3,17 +3,65 @@ import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Task from "./Task";
 import { useEffect, useState } from "react";
+import { useDrag, useDrop } from "react-dnd";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import toast from "react-hot-toast";
+
+const TaskItem = ({ task, status, moveTask }) => {
+  const [, ref] = useDrag({
+    type: "TASK",
+    item: { id: task._id, status },
+  });
+
+  const [, drop] = useDrop({
+    accept: "TASK",
+    hover: (draggedItem) => {
+      if (draggedItem.id !== task._id || draggedItem.status !== status) {
+        moveTask(draggedItem.id, status);
+        draggedItem.id = task._id;
+        draggedItem.status = status;
+      }
+    },
+  });
+
+  return (
+    <div ref={(node) => ref(drop(node))}>
+      <Task task={task} />
+    </div>
+  );
+};
+
+const Placeholder = ({ status, moveTask }) => {
+  const [, drop] = useDrop({
+    accept: "TASK",
+    hover: (draggedItem) => {
+      if (draggedItem.status !== status) {
+        moveTask(draggedItem.id, status);
+        draggedItem.status = status;
+      }
+    },
+  });
+
+  return (
+    <div
+      className="w-[300px] h-[200px] flex justify-center items-center"
+      ref={(node) => drop(node)}
+    >
+      Drop here to update status
+    </div>
+  );
+};
 
 const TasksList = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const [todoTask, setTodoTask] = useState([]);
-  const [ongoingTask, setOngoingTask] = useState([]);
-  const [completedTask, setCompletedTask] = useState([]);
+  const [todoTasks, setTodoTasks] = useState([]);
+  const [ongoingTasks, setOngoingTasks] = useState([]);
+  const [completedTasks, setCompletedTasks] = useState([]);
 
-  // Queries
   const {
-    data: tasks,
+    data: fetchedTasks,
     refetch,
     isLoading,
   } = useQuery({
@@ -25,41 +73,89 @@ const TasksList = () => {
     },
   });
 
-  // Update state based on task status
   useEffect(() => {
-    if (tasks) {
-      const todoTasks = tasks.filter((task) => task.status === "To Do");
-      const ongoingTasks = tasks.filter((task) => task.status === "On Going");
-      const completedTasks = tasks.filter(
+    if (fetchedTasks) {
+      const todoTasks = fetchedTasks.filter((task) => task.status === "To Do");
+      const ongoingTasks = fetchedTasks.filter(
+        (task) => task.status === "On Going"
+      );
+      const completedTasks = fetchedTasks.filter(
         (task) => task.status === "Completed"
       );
 
-      setTodoTask(todoTasks);
-      setOngoingTask(ongoingTasks);
-      setCompletedTask(completedTasks);
+      setTodoTasks(todoTasks);
+      setOngoingTasks(ongoingTasks);
+      setCompletedTasks(completedTasks);
     }
-  }, [tasks]);
+  }, [fetchedTasks]);
+
+  const moveTask = (taskId, toStatus) => {
+    // Make the API call to update the task status
+    axiosSecure
+      .patch(`/tasks/${taskId}`, { status: toStatus })
+      .then(() => {
+        toast.success("Task status updated");
+        refetch();
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("Task status is not updated");
+      });
+  };
 
   return (
     <div className="overflow-x-auto w-[350px] md:w-[700px] xl:w-full px-2">
-      <h1 className="text-2xl font-bold">To Do</h1>
-      <div className="flex items-center justify-start gap-2">
-        {!isLoading &&
-          todoTask.map((task, idx) => <Task task={task} key={idx}></Task>)}
-      </div>
+      <DndProvider backend={HTML5Backend}>
+        <h1 className="text-2xl font-bold">To Do</h1>
+        <div className="flex items-center justify-start gap-2">
+          {!isLoading && todoTasks.length === 0 ? (
+            <Placeholder status="To Do" moveTask={moveTask} />
+          ) : (
+            todoTasks.map((task) => (
+              <TaskItem
+                key={task._id}
+                task={task}
+                status="To Do"
+                moveTask={moveTask}
+              />
+            ))
+          )}
+        </div>
 
-      {/* Repeat similar blocks for "On Going" and "Completed" */}
-      <h1 className="text-2xl font-bold">On Going</h1>
-      <div className="flex items-center justify-start gap-2">
-        {!isLoading &&
-          ongoingTask.map((task, idx) => <Task task={task} key={idx}></Task>)}
-      </div>
+        {/* Repeat similar blocks for "On Going" */}
+        <h1 className="text-2xl font-bold">On Going</h1>
+        <div className="flex items-center justify-start gap-2">
+          {!isLoading && ongoingTasks.length === 0 ? (
+            <Placeholder status="On Going" moveTask={moveTask} />
+          ) : (
+            ongoingTasks.map((task) => (
+              <TaskItem
+                key={task._id}
+                task={task}
+                status="On Going"
+                moveTask={moveTask}
+              />
+            ))
+          )}
+        </div>
 
-      <h1 className="text-2xl font-bold">Completed</h1>
-      <div className="flex items-center justify-start gap-2">
-        {!isLoading &&
-          completedTask.map((task, idx) => <Task task={task} key={idx}></Task>)}
-      </div>
+        {/* Completed column with a placeholder */}
+        <h1 className="text-2xl font-bold">Completed</h1>
+        <div className="flex items-center justify-start gap-2">
+          {!isLoading && completedTasks.length === 0 ? (
+            <Placeholder status="Completed" moveTask={moveTask} />
+          ) : (
+            completedTasks.map((task) => (
+              <TaskItem
+                key={task._id}
+                task={task}
+                status="Completed"
+                moveTask={moveTask}
+              />
+            ))
+          )}
+        </div>
+      </DndProvider>
     </div>
   );
 };

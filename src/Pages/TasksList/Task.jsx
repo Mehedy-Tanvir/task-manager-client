@@ -5,7 +5,10 @@ const Task = ({ task }) => {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
   return (
-    <div className="w-[300px] h-[200px] p-2 rounded-lg shadow-lg mt-2 mb-2 mr-2 ml-2">
+    <div
+      draggable
+      className="w-[300px] h-[200px] p-2 rounded-lg shadow-lg mt-2 mb-2 mr-2 ml-2"
+    >
       <div className="mt-4">
         <strong>Title:</strong> {task?.title}
       </div>
