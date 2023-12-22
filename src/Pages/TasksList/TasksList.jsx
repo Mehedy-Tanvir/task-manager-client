@@ -45,7 +45,7 @@ const Placeholder = ({ status, moveTask }) => {
 
   return (
     <div
-      className="w-[300px] h-[200px] flex justify-center items-center"
+      className="w-full h-[200px] flex justify-start items-center"
       ref={(node) => drop(node)}
     >
       Drop here to update status
@@ -104,13 +104,11 @@ const TasksList = () => {
   };
 
   return (
-    <div className="overflow-x-auto w-[350px] md:w-[700px] xl:w-full px-2">
+    <div className="overflow-x-auto w-[350px] md:w-[700px] lg:min-w-[600px] xl:w-full px-2">
       <DndProvider backend={HTML5Backend}>
         <h1 className="text-2xl font-bold">To Do</h1>
         <div className="flex items-center justify-start gap-2">
-          {!isLoading && todoTasks.length === 0 ? (
-            <Placeholder status="To Do" moveTask={moveTask} />
-          ) : (
+          {!isLoading &&
             todoTasks.map((task) => (
               <TaskItem
                 key={task._id}
@@ -118,16 +116,14 @@ const TasksList = () => {
                 status="To Do"
                 moveTask={moveTask}
               />
-            ))
-          )}
+            ))}
+          <Placeholder status="To Do" moveTask={moveTask} />
         </div>
-
+        <hr className="w-full mt-4 border-2 border-black" />
         {/* Repeat similar blocks for "On Going" */}
         <h1 className="text-2xl font-bold">On Going</h1>
         <div className="flex items-center justify-start gap-2">
-          {!isLoading && ongoingTasks.length === 0 ? (
-            <Placeholder status="On Going" moveTask={moveTask} />
-          ) : (
+          {!isLoading &&
             ongoingTasks.map((task) => (
               <TaskItem
                 key={task._id}
@@ -135,16 +131,15 @@ const TasksList = () => {
                 status="On Going"
                 moveTask={moveTask}
               />
-            ))
-          )}
+            ))}
+          <Placeholder status="On Going" moveTask={moveTask} />
         </div>
+        <hr className="w-full mt-4 border-2 border-black" />
 
         {/* Completed column with a placeholder */}
         <h1 className="text-2xl font-bold">Completed</h1>
         <div className="flex items-center justify-start gap-2">
-          {!isLoading && completedTasks.length === 0 ? (
-            <Placeholder status="Completed" moveTask={moveTask} />
-          ) : (
+          {!isLoading &&
             completedTasks.map((task) => (
               <TaskItem
                 key={task._id}
@@ -152,8 +147,8 @@ const TasksList = () => {
                 status="Completed"
                 moveTask={moveTask}
               />
-            ))
-          )}
+            ))}
+          <Placeholder status="Completed" moveTask={moveTask} />
         </div>
       </DndProvider>
     </div>
