@@ -7,6 +7,7 @@ import { useDrag, useDrop } from "react-dnd";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import toast from "react-hot-toast";
+import PropTypes from "prop-types";
 
 const TaskItem = ({ task, status, moveTask, refetch }) => {
   const [, ref] = useDrag({
@@ -32,6 +33,13 @@ const TaskItem = ({ task, status, moveTask, refetch }) => {
   );
 };
 
+TaskItem.propTypes = {
+  task: PropTypes.object.isRequired,
+  status: PropTypes.string.isRequired,
+  moveTask: PropTypes.func.isRequired,
+  refetch: PropTypes.func.isRequired,
+};
+
 const Placeholder = ({ status, moveTask }) => {
   const [, drop] = useDrop({
     accept: "TASK",
@@ -51,6 +59,11 @@ const Placeholder = ({ status, moveTask }) => {
       Drop here to update status
     </div>
   );
+};
+
+Placeholder.propTypes = {
+  status: PropTypes.string.isRequired,
+  moveTask: PropTypes.func.isRequired,
 };
 
 const TasksList = () => {

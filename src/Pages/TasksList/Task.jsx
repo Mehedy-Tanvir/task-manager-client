@@ -1,7 +1,9 @@
 import { MdDelete } from "react-icons/md";
-import axios from "axios"; // Import axios for making HTTP requests
+import { FaEdit } from "react-icons/fa";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const Task = ({ task, refetch }) => {
   const axiosSecure = useAxiosSecure();
@@ -29,7 +31,7 @@ const Task = ({ task, refetch }) => {
   return (
     <div
       draggable
-      className="w-[300px] h-[200px] p-2 rounded-lg shadow-lg mt-2 mb-2 mr-2 ml-2"
+      className="w-[300px] h-[210px] p-2 rounded-lg shadow-lg mt-2 mb-2 mr-2 ml-2"
     >
       <div className="mt-4">
         <strong>Title:</strong> {task?.title}
@@ -43,8 +45,11 @@ const Task = ({ task, refetch }) => {
       <div className="mt-2">
         <strong>Description:</strong> {task?.description}
       </div>
-      <div className="flex items-center justify-end">
+      <div className="flex items-center justify-end gap-4">
         {/* Call handleDelete when the delete icon is clicked */}
+        <Link to={`/dashboard/editTask/${task?._id}`}>
+          <FaEdit className="text-2xl text-green-500 cursor-pointer" />
+        </Link>
         <MdDelete
           className="text-2xl text-red-500 cursor-pointer"
           onClick={handleDelete}
@@ -53,5 +58,8 @@ const Task = ({ task, refetch }) => {
     </div>
   );
 };
-
+Task.propTypes = {
+  task: PropTypes.object.isRequired,
+  refetch: PropTypes.func.isRequired,
+};
 export default Task;

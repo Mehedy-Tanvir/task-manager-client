@@ -5,6 +5,7 @@ import Register from "../Pages/Register/Register";
 import Dashboard from "../Layout/Dashboard/Dashboard";
 import AddTasks from "../Pages/AddTasks/AddTasks";
 import TasksList from "../Pages/TasksList/TasksList";
+import EditTask from "../Pages/EditTask/EditTask";
 
 const Routes = createBrowserRouter([
   {
@@ -32,6 +33,14 @@ const Routes = createBrowserRouter([
       {
         path: "tasksList",
         element: <TasksList></TasksList>,
+      },
+      {
+        path: "editTask/:id",
+        element: <EditTask></EditTask>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/tasks/${params?.id}`, {
+            credentials: "include",
+          }),
       },
     ],
   },
