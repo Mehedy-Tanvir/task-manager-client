@@ -69,7 +69,7 @@ const Dashboard = () => {
               </Link>
             </li>
             <li className="text-xl font-medium">
-              <Link to="/">
+              <Link to="/dashboard/tasksList">
                 <FaTasks className="font-bold text-yellow-500" /> Tasks List
               </Link>
             </li>

@@ -17,6 +17,7 @@ const AddTasks = () => {
     const task = {
       ...entries,
       email: user.email,
+      status: "To Do",
     };
     const toastId = toast.loading("Adding task...");
     axiosSecure
