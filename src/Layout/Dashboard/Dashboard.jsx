@@ -6,6 +6,7 @@ import { MdOutlineAddTask } from "react-icons/md";
 import { FaTasks } from "react-icons/fa";
 import { LuLogOut } from "react-icons/lu";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
   const { user, loading, logoutUser } = useContext(AuthContext);
@@ -19,6 +20,9 @@ const Dashboard = () => {
   };
   return (
     <>
+      <Helmet>
+        <title>Tasky | Dashboard</title>
+      </Helmet>
       <label
         htmlFor="my-drawer-2"
         className="mt-[10px] ml-4 bg-slate-300 btn drawer-button lg:hidden"

@@ -24,8 +24,8 @@ const UserTypesSection = () => {
     <section className="px-2 py-16 bg-gray-100">
       <div className="container mx-auto text-center">
         <h2 className="mb-8 text-4xl font-bold">
-          Who <span className="text-yellow-500">Benefits</span> from Our Task
-          Manager?
+          Who <span className="text-yellow-500">Benefits</span> from Our{" "}
+          <span className="text-yellow-500">TASKY</span>?
         </h2>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {userTypes.map((userType, index) => (

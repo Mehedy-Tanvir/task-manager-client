@@ -3,6 +3,7 @@ import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const EditTask = () => {
   const { user } = useAuth();
@@ -38,6 +39,9 @@ const EditTask = () => {
   };
   return (
     <div className="container px-2 mx-auto mt-10 mb-10">
+      <Helmet>
+        <title>Tasky | Edit Task</title>
+      </Helmet>
       <div className="hero">
         <div className="flex-col lg:flex-row-reverse hero-content">
           <div className="max-w-[300px]">

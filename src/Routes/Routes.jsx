@@ -8,11 +8,13 @@ import TasksList from "../Pages/TasksList/TasksList";
 import EditTask from "../Pages/EditTask/EditTask";
 import Home from "../Pages/Home/Home";
 import PrivateRoutes from "./PrivateRoutes";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 const Routes = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         index: true,
@@ -35,6 +37,7 @@ const Routes = createBrowserRouter([
         <Dashboard></Dashboard>
       </PrivateRoutes>
     ),
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "addTasks",
@@ -60,9 +63,12 @@ const Routes = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/tasks/${params?.id}`, {
-            credentials: "include",
-          }),
+          fetch(
+            `https://task-manager-server-azure.vercel.app/tasks/${params?.id}`,
+            {
+              credentials: "include",
+            }
+          ),
       },
     ],
   },

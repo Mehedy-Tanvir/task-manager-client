@@ -13,7 +13,7 @@ const TaskManagerBanner = () => {
               duration: "2",
               delay: "1",
             }}
-            src="/banner.jpg" // Replace with your task manager image
+            src="/banner.jpg"
             className="w-[300px] md:w-[400px] lg:w-[600px] xl:w-[700px]"
             alt="Task Manager"
           />
@@ -53,7 +53,7 @@ const TaskManagerBanner = () => {
                 }}
                 className="btn border-2 border-yellow-500 text-[18px] font-medium bg-transparent text-yellow-500 hover:text-white hover:bg-yellow-500 shadow-lg"
               >
-                Let's Explore
+                Lets Explore
               </motion.button>
             </Link>
           </div>

@@ -55,18 +55,26 @@ const AuthProvider = ({ children }) => {
         setUser(currentUser);
         setLoading(false);
         axios
-          .post("http://localhost:3000/jwt", loggedUser, {
-            withCredentials: true,
-          })
+          .post(
+            "https://task-manager-server-azure.vercel.app/jwt",
+            loggedUser,
+            {
+              withCredentials: true,
+            }
+          )
           .then((res) => console.log(res))
           .catch((err) => console.log(err));
       } else {
         setUser(null);
         setLoading(false);
         axios
-          .post("http://localhost:3000/logout", loggedUser, {
-            withCredentials: true,
-          })
+          .post(
+            "https://task-manager-server-azure.vercel.app/logout",
+            loggedUser,
+            {
+              withCredentials: true,
+            }
+          )
           .then((res) => console.log(res))
           .catch((err) => console.log(err));
       }

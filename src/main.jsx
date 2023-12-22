@@ -15,8 +15,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
         <AuthProvider>
-          <Toaster />
-          <RouterProvider router={Routes} />
+          <div className="overflow-x-hidden font-poppins bg-[#FEFCFB]">
+            <Toaster />
+            <RouterProvider router={Routes} />
+          </div>
         </AuthProvider>
       </HelmetProvider>
     </QueryClientProvider>
