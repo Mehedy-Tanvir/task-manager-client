@@ -8,7 +8,7 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import toast from "react-hot-toast";
 
-const TaskItem = ({ task, status, moveTask }) => {
+const TaskItem = ({ task, status, moveTask, refetch }) => {
   const [, ref] = useDrag({
     type: "TASK",
     item: { id: task._id, status },
@@ -27,7 +27,7 @@ const TaskItem = ({ task, status, moveTask }) => {
 
   return (
     <div ref={(node) => ref(drop(node))}>
-      <Task task={task} />
+      <Task refetch={refetch} task={task} />
     </div>
   );
 };
@@ -111,6 +111,7 @@ const TasksList = () => {
           {!isLoading &&
             todoTasks.map((task) => (
               <TaskItem
+                refetch={refetch}
                 key={task._id}
                 task={task}
                 status="To Do"
@@ -126,6 +127,7 @@ const TasksList = () => {
           {!isLoading &&
             ongoingTasks.map((task) => (
               <TaskItem
+                refetch={refetch}
                 key={task._id}
                 task={task}
                 status="On Going"
@@ -142,6 +144,7 @@ const TasksList = () => {
           {!isLoading &&
             completedTasks.map((task) => (
               <TaskItem
+                refetch={refetch}
                 key={task._id}
                 task={task}
                 status="Completed"
