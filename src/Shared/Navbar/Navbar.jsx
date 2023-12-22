@@ -55,7 +55,7 @@ const Navbar = () => {
               ? "lg:text-yellow-500] drop-shadow-lg normal-case font-poppins font-normal text-[16px]"
               : "text-[#222] drop-shadow-lg normal-case font-normal text-[16px]"
           }
-          to="/dashboard"
+          to="/dashboard/tasksList"
         >
           Dashboard
         </NavLink>
@@ -117,22 +117,6 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 uppercase"
           >
             {links}
-            {!loading && user && (
-              <li className="lg:hidden">
-                <NavLink
-                  className={({ isActive, isPending }) =>
-                    isPending
-                      ? "pending"
-                      : isActive
-                      ? "lg:text-[#FA7436] drop-shadow-lg normal-case font-poppins font-normal text-[16px]"
-                      : "text-[#222] drop-shadow-lg normal-case font-normal text-[16px]"
-                  }
-                  to="/dashboard"
-                >
-                  Dashboard
-                </NavLink>
-              </li>
-            )}
           </ul>
         </div>
       </div>

@@ -62,7 +62,7 @@ const Login = () => {
             <div className="max-w-[280px] lg:max-w-[400px]">
               <img src="" alt="" />
             </div>
-            <div className="border-2 max-w-[280px] md:max-w-[400px] shadow-xl border-[#4475F2] shrink card">
+            <div className="border-2 max-w-[280px] md:max-w-[400px] shadow-xl border-yellow-500 shrink card">
               <form onSubmit={handleSubmit} className="card-body">
                 <div className="form-control">
                   <input
@@ -117,7 +117,7 @@ const Login = () => {
                     className={
                       disabled
                         ? "btn text-3xl h-[60px] px-[20px] rounded-lg"
-                        : "bg-[#4475F2] hover:opacity-90 text-white text-3xl h-[60px] px-[20px] rounded-lg"
+                        : "bg-yellow-500 hover:opacity-90 text-white text-3xl h-[60px] px-[20px] rounded-lg"
                     }
                   >
                     Login

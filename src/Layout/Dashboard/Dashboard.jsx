@@ -5,9 +5,18 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import { MdOutlineAddTask } from "react-icons/md";
 import { FaTasks } from "react-icons/fa";
 import { LuLogOut } from "react-icons/lu";
+import toast from "react-hot-toast";
 
 const Dashboard = () => {
-  const { user, loading } = useContext(AuthContext);
+  const { user, loading, logoutUser } = useContext(AuthContext);
+  const handleLogout = () => {
+    const toastId = toast.loading("Logging out...");
+    logoutUser()
+      .then(() => {
+        toast.success("Logged out successfully", { id: toastId });
+      })
+      .catch((error) => toast.error(error.message, { id: toastId }));
+  };
   return (
     <>
       <label
@@ -80,9 +89,9 @@ const Dashboard = () => {
               </Link>
             </li>
             <li className="text-xl font-medium">
-              <Link to="/">
+              <button onClick={handleLogout}>
                 <LuLogOut className="font-bold text-yellow-500" /> Logout
-              </Link>
+              </button>
             </li>
           </ul>
         </div>

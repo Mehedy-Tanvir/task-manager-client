@@ -6,12 +6,18 @@ import Dashboard from "../Layout/Dashboard/Dashboard";
 import AddTasks from "../Pages/AddTasks/AddTasks";
 import TasksList from "../Pages/TasksList/TasksList";
 import EditTask from "../Pages/EditTask/EditTask";
+import Home from "../Pages/Home/Home";
+import PrivateRoutes from "./PrivateRoutes";
 
 const Routes = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
     children: [
+      {
+        index: true,
+        element: <Home></Home>,
+      },
       {
         path: "register",
         element: <Register></Register>,
@@ -24,19 +30,35 @@ const Routes = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivateRoutes>
+        <Dashboard></Dashboard>
+      </PrivateRoutes>
+    ),
     children: [
       {
         path: "addTasks",
-        element: <AddTasks></AddTasks>,
+        element: (
+          <PrivateRoutes>
+            <AddTasks></AddTasks>
+          </PrivateRoutes>
+        ),
       },
       {
         path: "tasksList",
-        element: <TasksList></TasksList>,
+        element: (
+          <PrivateRoutes>
+            <TasksList></TasksList>
+          </PrivateRoutes>
+        ),
       },
       {
         path: "editTask/:id",
-        element: <EditTask></EditTask>,
+        element: (
+          <PrivateRoutes>
+            <EditTask></EditTask>
+          </PrivateRoutes>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:3000/tasks/${params?.id}`, {
             credentials: "include",

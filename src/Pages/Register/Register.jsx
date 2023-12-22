@@ -78,7 +78,7 @@ const Register = () => {
             <div className="max-w-[280px] lg:max-w-[400px]">
               <img src="" alt="" />
             </div>
-            <div className="border-2 shadow-xl max-w-[280px] md:max-w-[400px] shrink border-[#4475F2] card">
+            <div className="border-2 shadow-xl max-w-[280px] md:max-w-[400px] shrink border-yellow-500 card">
               <form onSubmit={handleSubmit} className="card-body">
                 <div className="form-control">
                   <input
@@ -135,7 +135,7 @@ const Register = () => {
                 </div>
                 <div className="mt-6 form-control">
                   <input
-                    className="bg-[#4475F2]  hover:opacity-90 text-white text-3xl h-[60px] px-[20px] rounded-lg"
+                    className="bg-yellow-500  hover:opacity-90 text-white text-3xl h-[60px] px-[20px] rounded-lg"
                     type="submit"
                     value="Register"
                   />

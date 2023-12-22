@@ -39,7 +39,7 @@ const SocialLogin = () => {
   return (
     <button
       type="button"
-      className="h-[40px] mt-4 w-full text-center border-2 border-[#4475F2] font-medium text-[#222] rounded-3xl"
+      className="h-[40px] mt-4 w-full text-center border-2 border-yellow-500 font-medium text-[#222] rounded-3xl"
       onClick={handleGoogleSignIn}
     >
       <div className="flex items-center justify-center gap-2">

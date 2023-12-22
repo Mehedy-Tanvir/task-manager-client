@@ -53,7 +53,7 @@ const Placeholder = ({ status, moveTask }) => {
 
   return (
     <div
-      className="w-full h-[200px] flex justify-start items-center"
+      className="w-[300px] h-[210px] flex justify-start items-center"
       ref={(node) => drop(node)}
     >
       Drop here to update status
