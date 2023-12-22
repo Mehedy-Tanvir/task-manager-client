@@ -1,8 +1,19 @@
-# React + Vite
+# TASKY
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project's Description
 
-Currently, two official plugins are available:
+- It is a task manager application whose client site is built with react js and tailwind css.
+- Authenticated users can add, update, delete and see their added tasks.
+- Users can drag and drop update their tasks status between todo, on going, completed.
+- It has backend server built using node.js and express.js
+- JWT authentication with axios interceptor is implemented in this application.
+- For database it is connected with MongoDB database with Mongoose.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Server Repository Link
+
+- [https://github.com/Mehedy-Tanvir/task-manager-server](https://github.com/Mehedy-Tanvir/task-manager-server)
+
+## Live Links
+
+- [https://tasky-task-manager-c6b10.web.app/](https://tasky-task-manager-c6b10.web.app/)
+- [https://tasky-task-manager-c6b10.firebaseapp.com/](https://tasky-task-manager-c6b10.firebaseapp.com/)
