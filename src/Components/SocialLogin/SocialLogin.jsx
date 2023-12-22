@@ -28,7 +28,6 @@ const SocialLogin = () => {
           })
           .catch((error) => {
             console.log(error);
-            toast.error("User was not saved at the database");
           });
       })
       .catch((error) => {
